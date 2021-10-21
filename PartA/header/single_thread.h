@@ -1,3 +1,5 @@
+// Optimize this function
+
 void singleThread(int N, int *matA, int *matB, int *output)
 {
     // enforce N to be power of 2 and greater than 2
