@@ -6,7 +6,7 @@ cmm_server: main.cu header/gpu_thread.h
 	nvcc main.cu -o cmm_server -I ./header
 
 cmm_sim: main.cu header/gpu_thread.h
-	nvcc main.cu -o cmm -I ./header --cudart shared -gencode arch=compute_70,code=compute_70
+	nvcc main.cu -o cmm_sim -I ./header --cudart shared -gencode arch=compute_70,code=compute_70
 
 data/generate: data/generate.cpp
 	g++ ./data/generate.cpp -o ./data/generate
