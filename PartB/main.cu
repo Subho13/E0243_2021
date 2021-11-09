@@ -85,17 +85,17 @@ int main(int argc, char *argv[])
             input_file >> matB[i * N + j];
     
     // Execute reference program
-    int *output_reference = new int[2 * N - 1];
+    int *output_reference = new int[N*(N>>1)];
     reference(N, matA, matB, output_reference);
     
-    // Execute single thread
-    int *output_single = new int[2 * N - 1];
-    gpuThread(N, matA, matB, output_single);
+    // Execute gpu version
+    int *output_gpu = new int[N*(N>>1)];
+    gpuThread(N, matA, matB, output_gpu);
     
-    for(int i = 0; i < 2 * N - 1; ++i)
-        if(output_single[i] != output_reference[i]) {
+    for(int i = 0; i < N*(N>>1); ++i)
+        if(output_gpu[i] != output_reference[i]) {
             cout << "Mismatch at " << i << "\n";
-            cout << "GPU output: " << output_single[i] << ", required output: " << output_reference[i] << "\n";
+            cout << "GPU output: " << output_gpu[i] << ", required output: " << output_reference[i] << "\n";
             exit(0);
         }
     input_file.close(); 
